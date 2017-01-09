@@ -89,6 +89,7 @@ dat_all <- dir(path = model_runs, pattern = "res_1_watbal.out", recursive = T, f
   do.call(cbind, .)
 
 # save as R object
+dat_all <- round(dat_all,2)
 save(dat_all, file=name_out_level)
 
 rm(dat_all)
@@ -124,4 +125,5 @@ dat_all <- list.dirs(model_runs, recursive=F) %>%
   do.call(cbind, .)
 
 # save as R object
+dat_all <- round(dat_all,2)
 save(dat_all, file=name_out_precip)
