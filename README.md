@@ -13,8 +13,10 @@ As the Paper is (going to be) submitted to an open access journal, everybody is 
 2. Go into the Script/ directory, create a personal copy of the script.tex file
 3. Adjust that copy as you wish
 4. To make comments I suggest the _todonotes_ package
-5. To highlight your contributions from the original text, I suggest the tool _latexdiff_ which creates a new *.tex file which, in turn, you can compile to produce a pdf highlighting the differences in a word-like style
+5. To highlight your contributions from the original text, I (and, e.g., the publisher Copernicus) suggest the tool _latexdiff_ which creates a new *.tex file which, in turn, you can compile to produce a pdf highlighting the differences in a word-like style
 6. Publish your contributions/comments directly at the GMD discussion page
+
+A tutorial on how to collaboratively write a paper with Latex (i.e., how to use _todonotes_ and _latexdiff_ etc.) can be found in directory __howto_review_with_latex/__ (courtesy of Aline Murawski).
 
 # Notes on analyses scripts
 For the paper, an ensemble analysis has been performed with 12,250 parameter realisations. This took several days on a high performance cluster employing 96 CPUs. The template R script used for these experiments has been included (__analysis/model_runs/apply_lumpR_template.R__) but it is not possible to reproduce the experiments on the fly. In addtion, due to unclear legal status, not all of the used input data can be made publicly available.
