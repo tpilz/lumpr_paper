@@ -7,7 +7,7 @@ The R package lumpR is available at https://github.com/tpilz/lumpR
 See the README and Wiki therein as well as the documentation in R for more information.
 
 # Review contribution
-As the Paper is was submitted to an open access journal, everybody is welcome to contribute to the review process. To do so, follow the standard procedure of paper review or try out the following:
+As the Paper has been submitted to an open access journal, everybody is welcome to contribute to the review process. To do so, follow the standard procedure of paper review or try out the following:
 
 1. Clone the repository
 2. Go into the Script/ directory, create a personal copy of the script.tex file
