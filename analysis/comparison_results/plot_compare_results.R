@@ -22,8 +22,7 @@
 # - <file_out_reslevel_paper>: Simulated reservoir levels with precipitation input and comparison with observed levels
 # - <file_out_prec_overview>: Rainfall input for all experiments (daily, monthly, yearly; NOT in the paper)
 # - <file_out_prec_diffs>: Absolute maximum rainfall difference over all experiments for a certain time step (daily, monthly, yearly)
-# - <file_out_prec_compare>: Yearly precipitation sums in comparison to values reported by Medeiros & de Araújo (2014)
-# - <file_out_rc_compare>: Yearly runoff coefficients in comparison to values reported by Medeiros & de Araújo (2014)
+# - <file_out_prec_rc_compare>: Yearly precipitation sums in comparison to values reported by Medeiros & de Araújo (2014) and yearly runoff coefficients in comparison to values reported by Medeiros & de Araújo (2014)
 #
 # ATTENTION: Script has been originally run on a high performance cluster. Calculations consume a lot of memory!
 
@@ -33,8 +32,9 @@ library(broom)
 library(plyr)
 library(dplyr)
 library(tidyr)
-library(doMC)
-registerDoMC(cores=8)
+library(gridExtra)
+#library(doMC)
+#registerDoMC(cores=32)
 
 # working dir
 setwd("/mnt/scratch/users/stud06/tpilz/LUMP_paper/analysis/comparison_results/")
@@ -55,8 +55,7 @@ file_out_inflow_overview <- "Bengue_inflow_overview.png"
 file_out_reslevel_paper <- "Bengue_resvol_overview.png"
 file_out_prec_overview <- "rainfall_area-weighted_overview.png"
 file_out_prec_diffs <- "rainfall_maxabsdiff_experiments_overview.png"
-file_out_prec_compare <- "Bengue_prec_compare.png"
-file_out_rc_compare <- "Bengue_rc_compare.png"
+file_out_prec_rc_compare <- "Bengue_prec_rc_compare.pdf"
 
 file_out <- "Bengue_inflow"
 
@@ -70,8 +69,8 @@ period <- c(as.Date("2006-01-01"), as.Date("2013-12-31"))
 
 ### CALCULATIONS ###
 
-# OVERVIEW OF BENGUE INFLOWS #
-# load data
+OVERVIEW OF BENGUE INFLOWS #
+load data
 load(dat)
 
 dat_obs <- read.table(file_obs, header=T, sep=";", skip = 4)
@@ -118,7 +117,7 @@ load(dat_level)
 dat_level <- dat_all[seq.Date(period[1], period[2], by="day"),]
 
 load(dat_pr)
-dat_prec <- dat_all[seq.Date(period[1], period[2], by="day"),1] # only one column as area-weighted precipitation sum over the catchment is always the same (has been checked)
+dat_prec <- dat_all[seq.Date(period[1], period[2], by="day"),1] # only one column as area-weighted precipitation sum over the catchment is almost the same (has been checked)
 dat_prec <- tidy(dat_prec)
 dat_prec$series <- "prec"
 rm(dat_all)
@@ -135,16 +134,20 @@ dat_all <- tidy(dat_all)
 
 dat_all <- rbind(dat_all, dat_prec)
 
+dat_all <- rbind(dat_all, data.frame(index=NA, series="NA", value=as.numeric(NA))) # quick and dirty solution to get the legend as desired
+
 gp <- ggplot(dat_all, aes(x=index, y=value, group=series)) +
-  geom_line(data = subset(dat_all, series == "prec"), lwd=0.5, mapping = aes(colour="Catchment precipitation")) +
+  geom_line(data = subset(dat_all, series == "NA"), lwd=0.5, mapping = aes(colour="Catchment precipitation")) +
+  geom_bar(data = subset(dat_all, series == "prec"), mapping = aes(colour="Catchment precipitation"), stat = "identity", show.legend = F) +
   geom_line(data = subset(dat_all, !(series %in% c("obs", "prec"))), lwd=0.5, mapping = aes(colour="Simulated reservoir levels")) +
   geom_line(data = subset(dat_all, series == "obs"), lwd=0.5, mapping = aes(colour="Observed reservoir level")) +
+  geom_hline(mapping = aes(colour="Maximum reservoir level", yintercept = 19.6), linetype="dashed") +
   scale_x_date("Date", date_breaks = "1 year", date_minor_breaks = "1 year") +
-  scale_color_manual(values=c("lightblue", "black", "gray50")) +
-  ylab(expression(paste("Water Volume / ", hm^3))) +
+  scale_color_manual(values=c("lightblue", "#F8766D", "black", "gray50")) +
+  ylab(expression(paste("Water Volume (", hm^3, ")"))) +
   theme_bw(base_size = 18) +
-  theme(legend.position=c(.99,.99), legend.justification = c(.99,.99), legend.key.width = unit(25,"pt"), legend.key = element_rect(colour = NA)) +
-  guides(colour = guide_legend(title=NULL, override.aes = list(size=1.2)))
+  theme(legend.position=c(.99,.99), legend.justification = c(.99,.99), legend.key.width = unit(25,"pt"), legend.key = element_blank()) +
+  guides(colour = guide_legend(title=NULL, override.aes = list(size=1.2, bg="white")))
 
 ggsave(file_out_reslevel_paper, plot = gp, width=14, height=6, units="in", dpi=300)
 
@@ -159,7 +162,9 @@ dat_all <- dat_all * 1.08 # get values in mm by incorporating catchment area via
 
 # time series of monthly and yearly sums
 dat_all_m <- apply.monthly(dat_all, colSums, na.rm=F)
+index(dat_all_m) <- index(dat_all_m) - 15 # yearly values shall be plotted at the middle of the respective month (approximately)
 dat_all_y <- apply.yearly(dat_all, colSums, na.rm=F)
+index(dat_all_y) <- index(dat_all_y) - 365/2 # yearly values shall be plotted at the middle of the respective year (approximately)
 
 # re-shape xts object for plotting with ggplot2
 dat_tidy_d <- cbind(tidy(dat_all), aggregation="daily")
@@ -173,25 +178,25 @@ rm(dat_tidy_d, dat_tidy_m, dat_tidy_y)
 gp <- ggplot(dat_tidy, aes(x=index, y=value, group=series)) +
   geom_line(colour="gray", lwd=0.5) +
   facet_grid(aggregation ~ ., scale="free_y") +
-  scale_x_date("Year", limits = c(as.Date("2001-01-01"), as.Date("2013-12-31")), date_breaks = "2 years", date_minor_breaks = "1 year") +
-  ylab("Rainfall / mm") +
-  theme_bw()
-ggsave(file_out_prec_overview, plot = gp, width=12, height=8, units="in", dpi=300)
+  scale_x_date("Date", limits = c(as.Date("2001-01-01"), as.Date("2013-12-31")), date_breaks = "2 years", date_minor_breaks = "1 year") +
+  ylab("Rainfall (mm)") +
+  theme_bw(base_size = 18)
+ggsave(file_out_prec_overview, plot = gp, width=14, height=8, units="in", dpi=300)
 
 # calculate and plot absolute differences between experiments
 dat_diff <- dat_tidy %>%
-  ddply(c("index", "aggregation"), .parallel=T, function(x) {
+  ddply(c("index", "aggregation"), function(x) { # had some problems with .parallel=T
     x %>%
-      summarise(diffs = max(abs(diff(value))))
+      summarise(diffs = max(abs(diff(value)), na.rm=T))
   })
 
 gp <- ggplot(dat_diff, aes(x=index, y=diffs, group=aggregation)) +
-  geom_line(colour="gray", lwd=0.5) +
+  geom_bar(colour="gray", stat = "identity") +
   facet_grid(aggregation ~ ., scale="free_y") +
-  scale_x_date("Year", limits = c(as.Date("2001-01-01"), as.Date("2013-12-31")), date_breaks = "2 years", date_minor_breaks = "1 year") +
-  ylab("Absolute difference in rainfall within experiments / mm") +
-  theme_bw()
-ggsave(file_out_prec_diffs, plot = gp, width=12, height=8, units="in", dpi=300)
+  scale_x_date("Date", limits = c(as.Date("2001-01-01"), as.Date("2013-12-31")), date_breaks = "2 years", date_minor_breaks = "1 year") +
+  ylab("Maximum absolute difference in rainfall input (mm)") +
+  theme_bw(base_size = 18)
+ggsave(file_out_prec_diffs, plot = gp, width=14, height=7, units="in", dpi=300)
 
 
 
@@ -231,18 +236,22 @@ comparisons <- data.frame(index = as.Date(c("2004-01-01", "2005-01-01", "2006-01
 dat_rc <- rbind.fill(dat_rc, comparisons)
 
 # plot
-gp <- ggplot(dat_rc, aes(x=index, y=rc*100, group=series)) +
+gp1 <- ggplot(dat_rc, aes(x=index, y=rc*100, group=series)) +
   geom_point(data = subset(dat_rc, series != "MedeirosAraujo"), colour="black") +
   geom_point(data = subset(dat_rc, series == "MedeirosAraujo"), colour="red") +
-  scale_y_continuous("Yearly runoff ratio / (%)", breaks=seq(0, 10, by=2)) +
+  scale_y_continuous("Runoff ratio (%)", breaks=seq(0, 10, by=2)) +
   scale_x_date("Year", limits = c(as.Date("2006-01-01"), as.Date("2011-01-01")), date_breaks = "1 year", date_minor_breaks = "1 year", date_labels = "%Y") +
-  theme_bw()
-ggsave(file_out_prec_compare, plot = gp, width=12, height=8, units="in", dpi=300)
+  theme_bw(base_size = 18)
+#ggsave(file_out_prec_compare, plot = gp, width=7, height=6, units="in", dpi=300)
 
-gp <- ggplot(dat_rc, aes(x=index, y=value.prec.mm, group=series)) +
+gp2 <- ggplot(dat_rc, aes(x=index, y=value.prec.mm, group=series)) +
   geom_point(data = subset(dat_rc, series != "MedeirosAraujo"), colour="black") +
   geom_point(data = subset(dat_rc, series == "MedeirosAraujo"), colour="red") +
-  scale_y_continuous("Precipitation sum / (mm)") +
+  scale_y_continuous("Precipitation sum (mm)") +
   scale_x_date("Year", limits = c(as.Date("2006-01-01"), as.Date("2011-01-01")), date_breaks = "1 year", date_minor_breaks = "1 year", date_labels = "%Y") +
-  theme_bw()
-ggsave(file_out_rc_compare, plot = gp, width=12, height=8, units="in", dpi=300)
+  theme_bw(base_size = 18)
+#ggsave(file_out_rc_compare, plot = gp, width=7, height=6, units="in", dpi=300)
+
+pdf(file_out_prec_rc_compare, width=14, height=4)
+grid.arrange(gp1, gp2, widths=c(.5,.5), ncol=2, nrow=1)
+dev.off()

@@ -1,4 +1,4 @@
-\begin{thebibliography}{87}
+\begin{thebibliography}{92}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{\tt #1}}
 \providecommand{\urlprefix}{URL }
@@ -7,11 +7,17 @@
   \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
 
+\bibitem[{Ajami et~al.(2016)Ajami, Khan, Tuteja, and Sharma}]{Ajami2016}
+Ajami, H., Khan, U., Tuteja, N.~K., and Sharma, A.: Development of a
+  computationally efficient semi-distributed hydrologic modeling application
+  for soil moisture, lateral flow and runoff simulation, Environ. Modell.
+  Softw., 85, 319--331, \doi{10.1016/j.envsoft.2016.09.002}, 2016.
+
 \bibitem[{Band et~al.(2000)Band, Tague, Brun, Tenenbaum, and
   Fernandes}]{Band2000}
 Band, L.~E., Tague, C.~L., Brun, S.~E., Tenenbaum, D.~E., and Fernandes, R.~A.:
   Modelling Watersheds as Spatial Object Hierarchies: Structure and Dynamics,
-  Transactions in GIS, 4, 181--196, \doi{10.1111/1467-9671.00048}, 2000.
+  Trans. GIS, 4, 181--196, \doi{10.1111/1467-9671.00048}, 2000.
 
 \bibitem[{Beven et~al.(1987)Beven, Calver, and Morris}]{Beven1987}
 Beven, K., Calver, A., and Morris, E.~M.: The Institute of Hydrology
@@ -22,15 +28,6 @@ Beven, K., Calver, A., and Morris, E.~M.: The Institute of Hydrology
 Bogaart, P.~W. and Troch, P.~A.: Curvature distribution within hillslopes and
   catchments and its effect on the hydrological response, Hydrol. Earth Syst.
   Sc., 10, 925--936, \doi{10.5194/hess-10-925-2006}, 2006.
-
-\bibitem[{Branger et~al.(2012)Branger, Jankowfsky, Vannier, Viallet, Debionne,
-  and Braud}]{Branger2012}
-Branger, F., Jankowfsky, S., Vannier, O., Viallet, P., Debionne, S., and Braud,
-  I.: Use of Open-Source GIS for the Pre-processing of Distributed Hydrological
-  Models, in: Geospatial Free and Open Source Software in the 21st Century:
-  Proceedings of the first Open Source Geospatial Research Symposium, OGRS
-  2009, edited by Bocher, E. and Neteler, M., chap.~3, pp. 35--48, Springer
-  Berlin Heidelberg, \doi{10.1007/978-3-642-10595-1_3}, 2012.
 
 \bibitem[{Bronstert(1999)}]{Bronstert1999}
 Bronstert, A.: Capabilities and limitations of detailed hillslope hydrological
@@ -51,16 +48,15 @@ Bronstert, A., de~Ara{\'u}jo, J.-C., Batalla, R.~J., Costa, A.~C., Delgado,
 Cochrane, T. and Flanagan, D.: Representative hillslope methods for applying
   the WEPP model with DEMs and GIS, T. ASAE, 46, 1041--1049, 2003.
 
-\bibitem[{Costa-Cabral and Burges(1994)}]{Costa-Cabral1994}
-Costa-Cabral, M.~C. and Burges, S.~J.: Digital Elevation Model Networks
-  (DEMON): A model of flow over hillslopes for computation of contributing and
-  dispersal areas, Water Resour. Res., 30, 1681--1692, \doi{10.1029/93WR03512},
-  1994.
+\bibitem[{Dawes and Short(1994)}]{Dawes1994}
+Dawes, W.~R. and Short, D.: The significance of topology for modeling the
+  surface hydrology of fluvial landscapes, Water Resour. Res., 30, 1045--1055,
+  \doi{10.1029/93WR02479}, 1994.
 
 \bibitem[{de~Ara{\'u}jo and Medeiros(2013)}]{deAraujo2013}
 de~Ara{\'u}jo, J.~C. and Medeiros, P. H.~A.: Impact of Dense Reservoir Networks
-  on Water Resources in Semiarid Environments, Australian Journal of Water
-  Resources, 17, 87--100, \doi{10.7158/13241583.2013.11465422}, 2013.
+  on Water Resources in Semiarid Environments, Aust. J. Water Resour., 17,
+  87--100, \doi{10.7158/13241583.2013.11465422}, 2013.
 
 \bibitem[{de~Figueiredo et~al.(2016)de~Figueiredo, de~Ara{\'u}jo, Medeiros, and
   Costa}]{Figueiredo2016}
@@ -77,7 +73,7 @@ DeVantier, B.~A. and Feldman, A.~D.: Review of GIS Applications in Hydrologic
 \bibitem[{Di~Luzio et~al.(2004)Di~Luzio, Srinivasan, and Arnold}]{DiLuzio2004}
 Di~Luzio, M., Srinivasan, R., and Arnold, J.~G.: A GIS-Coupled Hydrological
   Model System for the Watershed Assessment of Agricultural Nonpoint and Point
-  Sources of Pollution, Transactions in GIS, 8, 113--136,
+  Sources of Pollution, Trans. GIS, 8, 113--136,
   \doi{10.1111/j.1467-9671.2004.00170.x}, 2004.
 
 \bibitem[{Euser et~al.(2015)Euser, Hrachowitz, Winsemius, and
@@ -85,6 +81,13 @@ Di~Luzio, M., Srinivasan, R., and Arnold, J.~G.: A GIS-Coupled Hydrological
 Euser, T., Hrachowitz, M., Winsemius, H.~C., and Savenije, H.~H.: The effect of
   forcing and landscape distribution on performance and consistency of model
   structures, Hydrol. Process., 29, 3727--3743, \doi{10.1002/hyp.10445}, 2015.
+
+\bibitem[{Fenicia et~al.(2016)Fenicia, Kavetski, Savenije, and
+  Pfister}]{Fenicia2016}
+Fenicia, F., Kavetski, D., Savenije, H. H.~G., and Pfister, L.: From spatially
+  variable streamflow to distributed hydrological models: Analysis of key
+  modeling decisions, Water Resour. Res., 52, 954--989,
+  \doi{10.1002/2015WR017398}, 2016.
 
 \bibitem[{Flanagan and Nearing(1995)}]{Flanagan1995}
 Flanagan, D.~C. and Nearing, M.~A.: USDA Water Erosion Prediction Project --
@@ -133,6 +136,13 @@ Garbrecht, J. and Martz, L.~W.: An Overview of TOPAZ: An Automated Digital
 \bibitem[{Gerstengarbe and Werner(1999)}]{Gerstengarbe1999}
 Gerstengarbe, F.-W. and Werner, P.~C.: Estimation of the beginning and end of
   recurrent events within a climate regime, Clim. Res., 11, 97--107, 1999.
+
+\bibitem[{González et~al.(2016)González, Carkovic, Lobo, Flanagan, and
+  Bonilla}]{Gonzales2016}
+González, V.~I., Carkovic, A.~B., Lobo, G.~P., Flanagan, D.~C., and Bonilla,
+  C.~A.: Spatial discretization of large watersheds and its influence on the
+  estimation of hillslope sediment yield, Hydrol. Process., 30, 30--39,
+  \doi{10.1002/hyp.10559}, 2016.
 
 \bibitem[{Grayson et~al.(1992)Grayson, Moore, and McMahon}]{Grayson1992}
 Grayson, R.~B., Moore, I.~D., and McMahon, T.~A.: Physically based hydrologic
@@ -187,6 +197,11 @@ Jacomine, P. K.~T., Almeida, J.~C., and Medeiros, L. A.~R.: Levantamento
   exploratorio -- Reconhecimento de solos do Estado do Ceará, vol.~1, DNPEA,
   DRN-SUDENE, Recife, Brazil, 1973.
 
+\bibitem[{Khan et~al.(2014)Khan, Tuteja, Ajami, and Sharma}]{Khan2014}
+Khan, U., Tuteja, N.~K., Ajami, H., and Sharma, A.: An equivalent
+  cross-sectional basis for semidistributed hydrological modeling, Water
+  Resour. Res., 50, 4395--4415, \doi{10.1002/2013WR014741}, 2014.
+
 \bibitem[{Kinner et~al.(2005)Kinner, Mitasova, Stallard, Harmon, and
   Toma}]{Kinner2005}
 Kinner, D., Mitasova, H., Stallard, R., Harmon, R.~S., and Toma, L.: GIS-Based
@@ -201,8 +216,8 @@ Kite, G.~W.: Scaling of Input Data for Macroscale Hydrologic Modeling, Water
 
 \bibitem[{Kneis(2015)}]{Kneis2015}
 Kneis, D.: A lightweight framework for rapid development of object-based
-  hydrological model engines, Environmental Modelling \& Software, 68,
-  110--121, \doi{10.1016/j.envsoft.2015.02.009}, 2015.
+  hydrological model engines, Environ. Modell. Softw., 68, 110--121,
+  \doi{10.1016/j.envsoft.2015.02.009}, 2015.
 
 \bibitem[{Kouwen et~al.(1993)Kouwen, Soulis, Pietroniro, Donald, and
   Harrington}]{Kouwen1993}
@@ -213,8 +228,8 @@ Kouwen, N., Soulis, E.~D., Pietroniro, A., Donald, J., and Harrington, R.~A.:
 \bibitem[{Krol et~al.(2011)Krol, de~Vries, Oel, and de~Ara\'{u}jo}]{Krol2011}
 Krol, M.~S., de~Vries, M.~J., Oel, P.~R., and de~Ara\'{u}jo, J.~C.:
   Sustainability of Small Reservoirs and Large Scale Water Availability Under
-  Current Conditions and Climate Change, Water Resour Manage, 25, 3017 -- 3026,
-  \doi{10.1007/s11269-011-9787-0}, 2011.
+  Current Conditions and Climate Change, Water Resour. Manage., 25, 3017 --
+  3026, \doi{10.1007/s11269-011-9787-0}, 2011.
 
 \bibitem[{Krysanova et~al.(1998)Krysanova, Müller-Wohlfeil, and
   Becker}]{Krysanova1998}
@@ -314,10 +329,10 @@ Miller, S.~N., Semmens, D.~J., Goodrich, D.~C., Hernandez, M., Miller, R.~C.,
   Assessment tool, Environ. Modell. Softw., 22, 365--377,
   \doi{10.1016/j.envsoft.2005.12.004}, 2007.
 
-\bibitem[{Mitasova and Neteler(2004)}]{Mitasova2004}
-Mitasova, H. and Neteler, M.: GRASS as Open Source Free Software GIS:
-  Accomplishments and Perspectives, Transactions in GIS, 8, 145--154,
-  \doi{10.1111/j.1467-9671.2004.00172.x}, 2004.
+\bibitem[{Moln\'ar and Julien(2000)}]{Molnar2000}
+Moln\'ar, D.~K. and Julien, P.~Y.: Grid-Size Effects on Surface Runoff
+  Modeling, J. Hydrol. Eng., 5, 8--16,
+  \doi{10.1061/(ASCE)1084-0699(2000)5:1(8)}, 2000.
 
 \bibitem[{Moore and Grayson(1991)}]{Moore1991b}
 Moore, I.~D. and Grayson, R.~B.: Terrain-based catchment partitioning and
@@ -356,7 +371,7 @@ Mueller, E.~N., Francke, T., Batalla, R.~J., and Bronstert, A.: Modelling the
   Mamede}]{Mueller2010}
 Mueller, E.~N., G\"{u}ntner, A., Francke, T., and Mamede, G.: Modelling
   sediment export, retention and reservoir sedimentation in drylands with the
-  WASA-SED model, Geoscientific Model Development, 3, 275--291,
+  WASA-SED model, Geosci. Model Dev., 3, 275--291,
   \doi{10.5194/gmd-3-275-2010}, 2010.
 
 \bibitem[{Neteler et~al.(2012)Neteler, Bowman, Landa, and Metz}]{Neteler2012}
@@ -369,11 +384,6 @@ Noël, P., Rousseau, A.~N., Paniconi, C., and Nadeau, D.~F.: Algorithm for
   Delineating and Extracting Hillslopes and Hillslope Width Functions from
   Gridded Elevation Data, J. Hydrol. Eng., 19, 366--374,
   \doi{10.1061/(ASCE)HE.1943-5584.0000783}, 2014.
-
-\bibitem[{O'Callaghan and Mark(1984)}]{OCallaghan1984}
-O'Callaghan, J.~F. and Mark, D.~M.: The extraction of drainage networks from
-  digital elevation data, Comput. Vision Graph., 28, 323--344,
-  \doi{10.1016/S0734-189X(84)80011-0}, 1984.
 
 \bibitem[{Passalacqua et~al.(2010)Passalacqua, Do~Trung, Foufoula-Georgiou,
   Sapiro, and Dietrich}]{Passalacqua2010}
@@ -399,12 +409,17 @@ Pianosi, F., Beven, K., Freer, J., Hall, J.~W., Rougier, J., Stephenson, D.~B.,
   Foundation for Statistical Computing, Vienna, Austria,
   \urlprefix\url{https://www.R-project.org/}, accessed 5 July 2016, 2015.
 
+\bibitem[{Refsgaard(1997)}]{Refsgaard1997b}
+Refsgaard, J.~C.: Parameterisation, calibration and validation of distributed
+  hydrological models, J. Hydrol., 198, 69--97,
+  \doi{10.1016/S0022-1694(96)03329-X}, 1997.
+
 \bibitem[{Reggiani et~al.(1998)Reggiani, Sivapalan, and
   Hassanizadeh}]{Reggiani1998}
 Reggiani, P., Sivapalan, M., and Hassanizadeh, S.~M.: A unifying framework for
   watershed thermodynamics: balance equations for mass, momentum, energy and
-  entropy, and the second law of thermodynamics, Advances in Water Resources,
-  22, 367--398, \doi{10.1016/S0309-1708(98)00012-8}, 1998.
+  entropy, and the second law of thermodynamics, Adv. Water Resour., 22,
+  367--398, \doi{10.1016/S0309-1708(98)00012-8}, 1998.
 
 \bibitem[{Renschler(2003)}]{Renschler2003}
 Renschler, C.~S.: Designing geo-spatial interfaces to scale process models: the
@@ -438,6 +453,10 @@ Sawicz, K., Wagener, T., Sivapalan, M., Troch, P.~A., and Carrillo, G.:
   on catchment function in the eastern USA, Hydrol. Earth Syst. Sc., 15,
   2895--2911, \doi{10.5194/hess-15-2895-2011}, 2011.
 
+\bibitem[{Schulla and Jasper(2007)}]{Schulla2007}
+Schulla, J. and Jasper, K.: Model Description WaSiM-ETH, Technical report 2007,
+  pp. 181, ETH Z\"urich, 2007.
+
 \bibitem[{Schwartze(2008)}]{Schwartze2008}
 Schwartze, C.: Deriving Hydrological Response Units (HRUs) using a Web
   Processing Service implementation based on GRASS GIS, Geoinformatics FCE CTU,
@@ -448,10 +467,11 @@ Smith, T., Marshall, L., McGlynn, B., and Jencso, K.: Using field data to
   inform and evaluate a new model of catchment hydrologic connectivity, Water
   Resour. Res., 49, 6834--6846, \doi{10.1002/wrcr.20546}, 2013.
 
-\bibitem[{Steiniger and Bocher(2009)}]{Steiniger2009}
-Steiniger, S. and Bocher, E.: An overview on current free and open source
-  desktop GIS developments, Int. J. Geogr. Inf. Sci., 23, 1345--1370,
-  \doi{10.1080/13658810802634956}, 2009.
+\bibitem[{Sulis et~al.(2011)Sulis, Paniconi, and Camporese}]{Sulis2011}
+Sulis, M., Paniconi, C., and Camporese, M.: Impact of grid resolution on the
+  integrated and distributed response of a coupled surface–subsurface
+  hydrological model for the des Anglais catchment, Quebec, Hydrol. Process.,
+  25, 1853--1865, \doi{10.1002/hyp.7941}, 2011.
 
 \bibitem[{Tague and Band(2004)}]{Tague2004}
 Tague, C. and Band, L.: RHESSys: Regional Hydro-ecologic simulation system: An
@@ -461,12 +481,6 @@ Tague, C. and Band, L.: RHESSys: Regional Hydro-ecologic simulation system: An
 \bibitem[{Tarboton(2003)}]{Tarboton2003}
 Tarboton, D.: Terrain Analysis Using Digital Elevation Models in Hydrology, in:
   23rd ESRI International Users Conference, San Diego, California, USA, 2003.
-
-\bibitem[{Tarboton et~al.(1991)Tarboton, Bras, and
-  Rodriguez-Iturbe}]{Tarboton1991}
-Tarboton, D.~G., Bras, R.~L., and Rodriguez-Iturbe, I.: On the extraction of
-  channel networks from digital elevation data, Hydrol. Process., 5, 81--100,
-  \doi{10.1002/hyp.3360050107}, 1991.
 
 \bibitem[{Troch et~al.(2003)Troch, Paniconi, and Emiel~van Loon}]{Troch2003}
 Troch, P.~A., Paniconi, C., and Emiel~van Loon, E.: Hillslope-storage
@@ -513,8 +527,8 @@ Woolhiser, D.~A., Smith, R.~E., and Goodrich, D.~C.: {KINEROS}, A Kinematic
 
 \bibitem[{Xavier et~al.(2016)Xavier, King, and Scanlon}]{Xavier2016}
 Xavier, A.~C., King, C.~W., and Scanlon, B.~R.: Daily gridded meteorological
-  variables in Brazil (1980–2013), International Journal of Climatology, 36,
-  2644--2659, \doi{10.1002/joc.4518}, 2016.
+  variables in Brazil (1980–2013), Int. J. Climatol., 36, 2644--2659,
+  \doi{10.1002/joc.4518}, 2016.
 
 \bibitem[{Zehe et~al.(2014)Zehe, Ehret, Pfister, Blume, Schr\"oder, Westhoff,
   Jackisch, Schymanski, Weiler, Schulz, Allroggen, Tronicke, van Schaik,
@@ -527,5 +541,17 @@ Zehe, E., Ehret, U., Pfister, L., Blume, T., Schr\"oder, B., Westhoff, M.,
   spatial organization and functioning of intermediate scale catchments,
   Hydrol. Earth Syst. Sc., 18, 4635--4655, \doi{10.5194/hess-18-4635-2014},
   2014.
+
+\bibitem[{Zhang et~al.(1999)Zhang, Dawes, Hatton, Reece, Beale, and
+  Packer}]{Zhang1999}
+Zhang, L., Dawes, W.~R., Hatton, T.~J., Reece, P.~H., Beale, G. T.~H., and
+  Packer, I.: Estimation of soil moisture and groundwater recharge using the
+  TOPOG\_IRM Model, Water Resour. Res., 35, 149--161, \doi{10.1029/98WR01616},
+  1999.
+
+\bibitem[{Zhang and Montgomery(1994)}]{Zhang1994}
+Zhang, W. and Montgomery, D.~R.: Digital elevation model grid size, landscape
+  representation, and hydrologic simulations, Water Resour. Res., 30,
+  1019--1028, \doi{10.1029/93WR03553}, 1994.
 
 \end{thebibliography}

@@ -171,14 +171,22 @@ ggsave(plot_PAWN_bars, plot = gp, width=18, height=8, units="in", dpi=300)
 
 # plot ecdfs
 dat_plot_ecd <- dat_sens %>%
-  gather("ecd_type", "ecd_val", ecd_uncon, ecd)
+  gather("ecd_type", "ecd_val", ecd_uncon, ecd) %>%
+  ddply("param", function(x) {
+    uniques <- unique(x$param_val)
+    len <- length(uniques)
+    key_val <- match(x$param_val, uniques)/len # calculate evenly spaced pseudo-parameter values for better colour assignment
+    return(cbind(x,key_val))
+  })
 
 # create plot for each parameter (to get individual color scales)
 gp <- dat_plot_ecd %>%
   dlply("param", function(x){
     gp_t <- ggplot(x, aes(x=value, y=ecd_val)) +
-      geom_line(data = subset(x, ecd_type!="ecd_uncon"), aes(group=param_val, colour=factor(param_val))) +
+      geom_line(data = subset(x, ecd_type!="ecd_uncon"), aes(group=param_val, colour=key_val)) +
       geom_line(data = subset(x, ecd_type=="ecd_uncon"), colour="black") +
+      #scale_colour_hue(h=c(0,180)) +
+      scale_colour_distiller(palette = "Spectral", direction = -1) +
       scale_y_continuous(breaks = round(seq(0, 1, by = 0.5),1)) +
       labs(x="Streamflow index value", y="Empirical cumulated density (-)") +
       theme_bw(base_size = 18) +
@@ -224,7 +232,9 @@ df <- data.frame(
 )
 leg1 <- ggplot(df, aes(x, y, colour=z)) +
   geom_point(aes(colour=z)) +
-  scale_colour_gradientn("Parameter value for conditional density functions   ", breaks=c(.01,.5,.99), labels=c("small", "medium", "large"), colours = rainbow(10), limits=c(0,1)) +
+  #scale_colour_gradientn("Relative parameter value for conditional density functions   ", breaks=c(.01,.5,.99), labels=c("small", "medium", "large"), colours = rainbow(10), limits=c(0,1)) +
+  scale_colour_distiller("Relative parameter value for conditional density functions   ", palette = "Spectral", direction = -1, breaks=c(.05,.5,.95), labels=c("small", "medium", "large"), limits=c(0,1)) +
+  #scale_colour_gradient2("Relative parameter value for conditional density functions   ", low="green", high="blue", breaks=c(.05,.5,.95), labels=c("small", "medium", "large"), limits=c(0,1)) +
   guides(colour = guide_colourbar(title.theme = element_text(size=18, angle = 0), title.hjust = 0, title.vjust = .8,
                                   label.theme = element_text(size=15, angle=0),
                                   barwidth = 15, barheight = 1.5, ticks = F, direction="horizontal")) +
@@ -242,7 +252,7 @@ leg2 <- ggplot(df, aes(x, y, colour=1)) +
 pdf(plot_PAWN_ecdf, width=18, height=9)
 lay <- rbind(c(1,1),
              c(2,3))
-grid.arrange(gp.all, g_legend(leg1), g_legend(leg2), layout_matrix=lay, heights=c(.9,.1), widths=c(.5,.5))
+grid.arrange(gp.all, g_legend(leg1), g_legend(leg2), layout_matrix=lay, heights=c(.9,.1), widths=c(.6,.4))
 dev.off()
 
 
