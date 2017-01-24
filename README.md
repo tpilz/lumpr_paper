@@ -1,5 +1,5 @@
 # lumpr_paper
-This repository contains a collection of Latex *.tex files to reproduce the paper of Pilz et al. (2017) (directory __Script/__), that has been submitted to GMD, including R scripts to reproduce (most of) the graphics therein (__analysis/__). The Paper describes the R package _lumpR_ for the hillslope-based discretisation of landscapes to be used in hydrological models.
+This repository contains a collection of Latex files to reproduce the paper of Pilz et al. (2017) (directory __Script/__), that has been submitted to GMD, including R scripts to reproduce (most of) the graphics therein (__analysis/__). The Paper describes the R package _lumpR_ for the hillslope-based discretisation of landscapes to be used in hydrological models.
 
 # lumpR
 The R package lumpR is available at https://github.com/tpilz/lumpR
