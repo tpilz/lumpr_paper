@@ -167,9 +167,9 @@ The number of accompanying software solutions is even larger.
 This makes it a difficult task to choose a specific model, the corresponding discretisation approach, and potential tools for landscape pre-processing.
 Therefore, the \emph{first objective} of this paper is to provide an overview of existing landscape discretisation algorithms and software implementations, thereby solely focussing on semi-distributed hydrological model application (Sect.\ \ref{sec:review}).
 
-Among the semi-distributed approaches, hillslope-based modelling is an efficient option for representing heterogeneous runoff generation processes while accounting for phenomena of hydrological connectivity (cf.\ Sect.\ \ref{sec:review_approaches}).
+Among the semi-distributed approaches, hillslope-based modelling is an efficient option for representing heterogeneous runoff generation processes while accounting for phenomena of hydrological connectivity (see Sect.\ \ref{sec:review_approaches}).
 However, so far only few computer programmes exist that aid in the pre-processing of hillslope-based models.
-Furthermore, these are often model-specific, have a limited applicability, and are not freely available or can only be used along with commercial software (cf.\ Sect.\ \ref{sec:review_software}).
+Furthermore, these are often model-specific, have a limited applicability, and are not freely available or can only be used along with commercial software (see Sect.\ \ref{sec:review_software}).
 The \emph{second objective} therefore is to present a new software package for the pre-processing of hillslope-based multi-scale hydrological models addressing these limitations.
 It is introduced and described in Sect.\ \ref{sec:lump}.
 
@@ -356,7 +356,8 @@ RHESSys comes with interfaces for both GRASS and ArcGIS to assist in landscape p
 This \emph{Landscape Unit Mapping Program} (LUMP) first discretises the landscape into various hillslopes, the elementary hillslope areas, and computes a representative catena for each of them.
 As a next step, similar catenae are grouped into landscape units whereas for the classification several variables can be taken into account such as horizontal and vertical catena length, shape of the profile, and sets of supplemental attributes further characterising the hillslope, e.g., qualitative data such as soil type and land cover class, or quantitative attributes such as LAI or further terrain characteristics.
 These representative catenae are eventually sub-divided into terrain components, e.g., into upslope, middle, and downslope parts.
-The software is semi-automated in way that the hillslope-based landscape parameterisation is largely automated generating reproducible results and reducing required user decisions to a minimum whereas, on the other hand, expert knowledge can be easily incorporated to improve the discretisation outcome.
+The approach will be further discussed in Sect.\ \ref{sec:landscape_discretisation} and is illustrated in Fig.\ \ref{fig:lumpr_output}.
+LUMP is semi-automated in way that the hillslope-based landscape parameterisation is largely automated generating reproducible results and reducing required user decisions to a minimum whereas, on the other hand, expert knowledge can be easily incorporated to improve the discretisation outcome.
 Contrary to other hillslope-based algorithms, due to the discretisation at multiple scales, it is applicable over large scales with relatively little effort.
 Even so LUMP was directed to the pre-processing of the WASA-SED model \citep{Guentner2004b}, it is stand-alone and the output can as well be used for other hillslope-based models.
 However, the programme is basically a collection of freely available scripts written in MATLAB and SHELL using GRASS functionalities.
@@ -371,7 +372,7 @@ Thus, to meet the second objective of this study to develop a user-friendly and 
 
 \section{lumpR: R package description}
 \label{sec:lump}
-The computer software \emph{lumpR} was developed with the aim to obtain a lightweight user-friendly and efficient tool for hillslope-based landscape discretisation and serving as pre-processing tool for the WASA-SED model \citep[][cf., Sect.\ \ref{sec:review}]{Guentner2004b}. 
+The \emph{\textbf{l}andscape \textbf{u}nit \textbf{m}apping \textbf{p}rogram for \textbf{R}} (lumpR) was developed with the aim to obtain a lightweight user-friendly and efficient tool for hillslope-based landscape discretisation and serving as pre-processing tool for the WASA-SED model \citep[][see also Sect.\ \ref{sec:wasa}]{Guentner2004b}. 
 In a more general sense, however, it should meet the requirements of being
 \emph{(i)} platform independent,
 \emph{(ii)} applicable for other hillslope-based models, too,
@@ -385,7 +386,7 @@ In the following these shall be explained in more detail.
 For more information on how to install and use the package and to inform about updates the reader is referred to the package's documentation (see Sect.\ \ref{sec:code_availability}).
 
 \begin{figure*}[t]
-\includegraphics[width=\linewidth]{lumpr_scheme.pdf}
+\includegraphics[width=\linewidth]{lumpr_scheme_numbers_rlogo.pdf}
 \caption{Schematic overview of the functionalities of the lumpR package. Shown are all available functions (\textit{in italics}) with a short explanation, interactions with external components, and the typical flow of information during the application. Processing order is indicated by numbers, whereas optional steps are indicated by dashed circles. Note that the acronym DBMS refers to \emph{DataBase Management System}.}
 \label{fig:lumpr_scheme}
 \end{figure*}
@@ -393,7 +394,7 @@ For more information on how to install and use the package and to inform about u
 \subsection{Prerequisites and general workflow}
 \label{sec:Prerequisites}
 As it is a package of the scripting language R, lumpR requires the statistical software R together with various packages it depends on.
-It employs a number of external calls to GRASS GIS and thus requires having GRASS 6.4\footnote{Note that the newest stable release GRASS 7 is not yet supported!} to be installed. 
+It employs a number of external calls to GRASS GIS and thus requires having GRASS to be installed. 
 A third requirement is a \emph{database management system} (DBMS) which will be accessed via the \emph{open database connectivity} (ODBC) which has to be set up as well.
 So far the DBMSs MySQL/MariaDB, SQLite, and MS Access are supported.
 When all settings and algorithm parameters can be determined, all processing steps can be run completely automatically.
@@ -409,32 +410,42 @@ A template script guiding through the processing steps of landscape discretisati
 \label{sec:landscape_discretisation}
 As is sketched in Fig.\ \ref{fig:lumpr_scheme}, the process of landscape discretisation involves five functions that should be applied in the following order.
 This can be ensured by customising the provided template script.
-\emph{(i) calc\_subbas()} sub-divides the hydrological basin into subbasins using a given grid-based DEM.
+\emph{(i) calc\_subbas()} sub-divides the hydrological basin into subbasins using a given grid-based DEM (black outlined polygons S1--3 in Fig.\ \ref{fig:lumpr_output}).
 Subbasin size can be influenced by the user by either giving a set of coordinates of drainage locations inferred beforehand or by specifying the parameter \verb|thresh_sub| being the minimum size of a subbasin in number of grid cells internally used by GRASS function r.watershed.
+Furthermore, the river network is inferred from calculated flow accumulation (the number of upstream raster cells draining through a specific raster cell) via a user-defined threshold (blue lines in Fig.\ \ref{fig:lumpr_output}).
 \emph{(ii) lump\_grass\_prep()} does several pre-processing steps needed for later use such as computing \emph{Soil-Vegetation Components} (SVCs) as simple overlay of soil and vegetation raster maps, inferring Horton stream order, and DEM-processing steps including the calculation of flow direction, flow accumulation, relative elevation (i.e., elevations above next downstream river grid cell), and distance to next river grid cell.
 The results are stored in the specified GRASS location.
-Furthermore, the function infers \emph{Environmental Hillslope Areas} (EHAs) based on the size parameter \verb|eha_thres|.
+Furthermore, the function infers \emph{Elementary Hillslope Areas} (EHAs) based on the size parameter \verb|eha_thres|.
+These are the basic units for calculation of representative catenae and, thus, one can think of them as single hillslopes (denoted as small polygons in Fig.\ \ref{fig:lumpr_output}).
 
-\emph{(iii) area2catena()} takes data from step (ii) and supplemental raster maps of quantitative and/or qualitative attributes to calculate a representative catena for every EHA. It is characterised by horizontal and vertical length, shape (in terms of cumulated elevation along the hillslope), slope width (approximated by taking the number of grid cells at a profile point divided by the total number of grid cells representing the whole hillslope), and all supplemental data.
+\emph{(iii) area2catena()} takes data from step (ii) and supplemental raster maps of quantitative and/or qualitative attributes to calculate a representative catena for every EHA (gray boxes in Fig.\ \ref{fig:lumpr_output}).
+It is characterised by horizontal and vertical length, shape (in terms of cumulated elevation along the hillslope), slope width (approximated by taking the number of grid cells at a profile point divided by the total number of grid cells representing the whole hillslope), and all supplemental data.
 This reduction is based on the work of \citet{Cochrane2003} for the WEPP model.
-\emph{(iv) prof\_class()} classifies the representative catenae into \emph{Landscape Units} (LUs).
+\emph{(iv) prof\_class()} classifies the representative catenae into \emph{Landscape Units} (LUs) (coloured areas in Fig.\ \ref{fig:lumpr_output}).
 In this step similar catenae are identified and lumped together based on the calculated properties employing an unsupervised K-means clustering method.
 The user has to specify the number of classes to generate from each attribute during the clustering, which is done separately for each attribute.
 The final class assignment for each catena results from the combination of these attribute-wise classifications.
-Each LU is then further sub-divided into \emph{Terrain Components} (TCs), i.e., planar elements representing, e.g., upper, middle, and downslope parts of the lumped catena.
-The number of TCs to be generated for each LU can be specified.
+Each LU is then further sub-divided into \emph{Terrain Components} (TCs), i.e., planar elements representing, e.g., upper, middle, and downslope parts of the lumped catena (coloured diagrams in Fig.\ \ref{fig:lumpr_output}).
+The number of TCs to be generated for each LU can be specified and the partition is done by evaluating the derived LU properties and employing a minimisation of variances approach.
+Topological relations between SVCs, TCs, and LUs are established, expressed as percentages of covered area and along-slope location of TCs within a LU rather than spatial coordinates.
 For visual inspection, the user has the option to let the functions generate plots during steps (iii) and (iv).
 The employed algorithms for steps (iii) and (iv) are explained in more detail by \citet{Francke2008}.
 Figure \ref{fig:lumpr_output} gives an illustrative example for the outcome after applying steps (i) to (iv).
 
-Finally, \emph{(v) lump\_grass\_post()} derives subbasin and LU specific parameters thereby employing rather simple relationships or typical standard values.
-Thus, the output of this function is mainly designed to provide a complete plausible parameterisation.
-Where alternative data is available, it should be used.
+Finally, \emph{(v) lump\_grass\_post()} establishes the topology between subbasins and LUs, again expressed as percentage of covered area.
+Subbasins are the only spatial units with explicit reference in terms of geographic coordinates.
+In addition, subbasin and LU specific parameters such as representative channel geometry and routing parameters, groundwater, and landscape coefficients, are assessed.
+Hereby, rather simple relationships or typical standard values are employed.
+The output of this function is mainly designed to provide a complete plausible parameterisation.
+Where alternative information are available, they should be used.
 See the function's documentation for more details.
+
+A summary of the most important parameters for the landscape discretisation process is given in Tab.\ \ref{tab:pars}.
+Their meaning along with a sensitivity analysis will be further discussed in Sect.\ \ref{sec:sensitivity_analysis}.
 
 \begin{figure}[t]
 \includegraphics[width=\columnwidth]{lump_algorithm.pdf}
-\caption{Example of the outcome of steps (i) to (iv) of landscape discretisation. Shown is a hydrological basin sub-divided into subbasins (labelled S 1--3), EHAs (green outline), and LUs (red, blue, yellow) with TCs. Along-slope catena properties for the EHAs and LUs are summarised by the diagrams.}
+\caption{Example of the outcome of steps (i) to (iv) of landscape discretisation. Shown is a hydrological basin sub-divided into subbasins (labelled S 1--3), EHAs (small polygons), and LUs (red, blue, yellow) with TCs. Along-slope catena properties for the EHAs and LUs are summarised by the diagrams.}
 \label{fig:lumpr_output}
 \end{figure}
 
@@ -471,9 +482,9 @@ Furthermore, upon request, export function for other models can easily be added.
 
 \section{Example application and sensitivity analysis}
 \label{sec:case_study}
-Within an example application, multiple realisations of hillslope discretisations of the same model domain are generated with lumpR version 1.4.14 by varying five parameters that control the creation of model entities on different scales.
+Within an example application, multiple realisations of hillslope discretisations of the same model domain are generated with lumpR version 2.0.0 by varying five parameters that control the creation of model entities on different scales.
 These realisations are then used with the hydrological model WASA-SED and their effect on the model output is analysed.
-In the following subsections, the study site, the WASA-SED model, and data used for model initialisation, the sensitivity analysis of the discretisation parameters, and, finally, the results of this study are described.
+In the following subsections, the study site, the WASA-SED model and data used for model initialisation, the sensitivity analysis of the discretisation parameters, and, finally, the results of this study are described.
  
 
 \subsection{Study site}
@@ -484,7 +495,7 @@ The area has been investigated in a number of studies, in many cases employing t
 
 \begin{figure}[t]
 \includegraphics[width=\linewidth]{overview_bengue.pdf}
-\caption{Overview over the Bengu\^e catchment (lower panel) and location within Brazil (upper right) and South America (upper left), respectively. Black lines in the background of the lower panel correspond to the grid of the meteorological dataset of \citet{Xavier2016} that was used in this analysis (cf., Sect.\ \ref{sec:data}).}
+\caption{Overview over the Bengu\^e catchment (lower panel) and location within Brazil (upper right) and South America (upper left), respectively. Black lines in the background of the lower panel correspond to the grid of the meteorological dataset of \citet{Xavier2016} that was used in this analysis (see Sect.\ \ref{sec:data}).}
 \label{fig:catchment}
 \end{figure}
 
@@ -511,7 +522,7 @@ The model was first introduced by and is described in detail within \citet{Guent
 It has been frequently employed in semi-arid areas such as northeastern Brazil (including the Bengu\^e catchment; for references see Sect.\ \ref{sec:study_site}), India \citep{Jackisch2014} and Spain \citep{Mueller2009,Mueller2010,Bronstert2014}.
 
 The model incorporates the Shuttleworth-Wallace approach for evapotranspiration calculation over sparsely vegetated surfaces and an infiltration approach based on Green-Ampt accounting for Horton-type infiltration.
-Via the complex hierarchical spatial disaggregation scheme (cf., Sect.\ \ref{sec:review_approaches}), lateral re-distribution processes as well as re-infiltration along a hillslope are considered while the model can still be applied over large scales (up to the order of magnitude of 100,000 \unit{km^2}).
+Via the complex hierarchical spatial disaggregation scheme (see Sect.\ \ref{sec:review_approaches}), lateral re-distribution processes as well as re-infiltration along a hillslope are considered while the model can still be applied over large scales (up to the order of magnitude of 100,000 \unit{km^2}).
 Large strategic reservoirs can be represented in an explicit manner while smaller ones are treated as lumped water bodies of different size classes to efficiently account for water retention of many small reservoirs in a study region.
 The model has been subsequently expanded, e.g., to account for sediment dynamics and was renamed from WASA to WASA-SED \citep{Mueller2010}.
 It should, however, be noted that in this study erosion is not modelled.
@@ -521,7 +532,7 @@ It should, however, be noted that in this study erosion is not modelled.
 \label{sec:data}
 Meteorological data in daily resolution to drive WASA-SED, in particular precipitation, air temperature (obtained by minimum and maximum temperatures by simple averaging), relative humidity, and incoming short-wave radiation, have been derived from the dataset described by \citet{Xavier2016}.
 This gridded dataset is based on station information that have been checked, corrected, and interpolated to a grid with 0.25\unit{\degree} x 0.25\unit{\degree} resolution.
-For the analysis, data from 20 grid cells were considered, whereas the catchment itself directly intersects with six cells (cf., Fig.\ \ref{fig:catchment}).
+For the analysis, data from 20 grid cells were considered, whereas the catchment itself directly intersects with six cells (see Fig.\ \ref{fig:catchment}).
 Extraterrestrial radiation as a further driver that has been calculated from astronomical relationships employing the R package \emph{sirad}.
 Meteorological data have been interpolated to the locations of subbasin centroids using an inverse-distance weighting approach by employing the R package \emph{geostat}.\footnote{This package is not on CRAN but available via the ECHSE tools library from \url{https://github.com/echse/echse_tools}.}
 
@@ -538,6 +549,7 @@ As has been mentioned, however, the model has been used in and proved its abilit
 
 
 \subsection{Sensitivity analysis of landscape discretisation parameters}
+\label{sec:sensitivity_analysis}
 During the process of landscape discretisation, a user commonly has to make a number of -- often subjective -- decisions.
 These are directly influencing the complexity of the discretisation and thereby affecting computational efforts and, possibly, model results.
 Although this issue has been acknowledged \citep[e.g.,][]{Ajami2016,Fenicia2016}, we are not aware of any study systematically analysing this effect for hillslope-based approaches and at multiple spatial scales at the same time.
@@ -783,7 +795,7 @@ Especially for hillslope-based discretization, this can cover several hierarchy 
 Consequently, the effects of these choices on the model output have been assessed via the sensitivity analysis within the example application and its results shall be discussed in the following.
 
 The results from the 12,250 realisations of landscape discretisation show only little difference with respect to water storage dynamics of the Bangu\^e reservoir (Fig.\ \ref{fig:resvol}).
-The small variation of the runoff coefficient (cf.\ Fig.\ \ref{fig:hydIndices}) further supports the conclusion that decisions on landscape discretisation parameterisation only have a minor impact on simulated runoff volume for the given case.
+The small variation of the runoff coefficient (see Fig.\ \ref{fig:hydIndices}) further supports the conclusion that decisions on landscape discretisation parameterisation only have a minor impact on simulated runoff volume for the given case.
 On the other hand, the influence on other indices describing runoff concentrations and dynamics, and the frequency of flood or drought events is much more obvious.
 
 The hydrological regime of the study area is primarily influenced by precipitation, which is characterised by a high temporal concentration and a large temporal and spatial variability.
@@ -798,7 +810,7 @@ Regarding the method of sensitivity analysis it can be concluded that the choice
 A drawback of the analysis approach is that only first order effects of parameter sensitivities have been quantified while interactions among parameters have been neglected.
 It might thus be that insignificant parameters (i.e., the parameter \verb!LU_atts!) have significant higher order effects due to parameter correlations.
 With respect to the discretisation parameterisations, it can be argued that the chosen parameter realisations are both subjective and case study specific.
-On the other hand, all parameter realisations show a monotonous effect on the streamflow indices, i.e., when increasing a sensitive parameter the streamflow index values increase or decrease monotonously (cf., Fig.\ \ref{fig:PAWNecdf}).
+On the other hand, all parameter realisations show a monotonous effect on the streamflow indices, i.e., when increasing a sensitive parameter the streamflow index values increase or decrease monotonously (see Fig.\ \ref{fig:PAWNecdf}).
 This suggest a continuous response of the parameters, facilitating some transferability of the results.
 
 Overall, the example study and sensitivity analysis is catchment and model specific.
