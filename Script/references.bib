@@ -1041,18 +1041,16 @@
 	in constrast to classical D8}
 }
 
-@ARTICLE{Troch2003,
-  author = {Troch, Peter A. and Paniconi, Claudio and Emiel van Loon, E.},
-  title = {Hillslope-storage Boussinesq model for subsurface flow and variable
-	source areas along complex hillslopes: 1. Formulation and characteristic
-	response},
+@Article{Troch2003,
+  author  = {Troch, Peter A. and Paniconi, Claudio and Emiel van Loon, E.},
+  title   = {Hillslope-storage Boussinesq model for subsurface flow and variable source areas along complex hillslopes: 1. Formulation and characteristic response},
   journal = {Water Resour. Res.},
-  year = {2003},
-  volume = {39},
-  number = {11},
-  note = {1316},
-  doi = {10.1029/2002WR001728},
-  issn = {1944-7973}
+  year    = {2003},
+  volume  = {39},
+  number  = {11},
+  issn    = {1944-7973},
+  note    = {1316},
+  doi     = {10.1029/2002WR001728},
 }
 
 @ARTICLE{Tucker2001,
@@ -1368,6 +1366,231 @@
   doi     = {10.5194/hess-10-609-2006},
   file    = {:Beven_2006_holy_grail_hydrology_closure-problem.pdf:PDF},
   groups  = {Landscape discretization, Hydrology},
+}
+
+@Article{OCallaghan1984,
+  author  = {John F. O'Callaghan and David M. Mark},
+  title   = {The extraction of drainage networks from digital elevation data},
+  journal = {Computer Vision, Graphics, and Image Processing},
+  year    = {1984},
+  volume  = {28},
+  number  = {3},
+  pages   = {323--344},
+  issn    = {0734-189X},
+  doi     = {10.1016/S0734-189X(84)80011-0},
+  file    = {:OCallaghan_Mark_1984_drainage_network_extraction_from_DEM.pdf:PDF},
+  groups  = {DEM, LUMP-Paper, General studies},
+}
+
+@Article{Tarboton1991,
+  author    = {Tarboton, David G. and Bras, Rafael L. and Rodriguez-Iturbe, Ignacio},
+  title     = {On the extraction of channel networks from digital elevation data},
+  journal   = {Hydrological Processes},
+  year      = {1991},
+  volume    = {5},
+  number    = {1},
+  pages     = {81--100},
+  issn      = {1099-1085},
+  doi       = {10.1002/hyp.3360050107},
+  file      = {:Tarboton_etal_1991_extraction_of_channel_networks_from_DEM.pdf:PDF},
+  groups    = {DEM},
+  keywords  = {Drainage density, Digital Elevation Models, Fluvial geomorphology, River basins, Mapping, Cartography},
+  publisher = {John Wiley \& Sons, Ltd},
+}
+
+@Article{Costa-Cabral1994,
+  author   = {Costa-Cabral, Mariza C. and Burges, Stephen J.},
+  title    = {Digital Elevation Model Networks (DEMON): A model of flow over hillslopes for computation of contributing and dispersal areas},
+  journal  = {Water Resources Research},
+  year     = {1994},
+  volume   = {30},
+  number   = {6},
+  pages    = {1681--1692},
+  issn     = {1944-7973},
+  abstract = {Aim:
+	
+	- digital elevation model networks (DEMON) to respect non-point source
+	flow generation
+	
+	- combines advantages of contour-based models and rectangular DEMs
+	
+	
+	Background and motivation:
+	
+	- specific contributing area (SCA)
+	
+	 - total contributing area (TCA) divided by contour segment length
+	
+	 - TCA: plan area of terrain contributing to a contour segment
+	
+	 - may be interpreted as an equivalent flow path length
+	
+	 - concept assumptions:
+	
+	 a) plan view of flow directions do not change with deth below land
+	surface
+	
+	 b) determined by surface topography
+	
+	 - limitations: 
+	
+	 a) terrain with small permeability relative to rainfall rate
+	
+	 b) subsurface flow lines approximately parallel in plan view to surface
+	flow lines
+	
+	 - application:
+	
+	 - indicator of discharge assuming spatially uniform and steady rate
+	of flow generation (strong approximation of natural conditions)
+	
+	 - indices as combination of SCA and other variables
+	
+	 - prediction of location and extent of channel networks
+	
+	- specific dispersal area (SDA)
+	
+	 - total dispersal area (TDA) divided by contour segment length
+	
+	 - TDA: plan area of terrain draining flow from specific contour segment
+	
+	 - indicates the area of influence of flow generated at specific location
+	
+	 - terminates at location of convergence or at receiving water body
+	
+	 - concept assumptions: the same as fow SCA
+	
+	 - application: e.g. to predict the influence zone of upslope pollution
+	sources
+	
+	- with availability of grid-based DEMs the concept was transferred
+	from contour-based elevation maps
+	
+	- DEMs unsuitable for SDA prediction because of one-dimensional downslope
+	flow projection
+	
+	
+	Algorithms for SCA computation:
+	
+	- D8
+	
+	 - each pixels spills into one of its eight neighbours in direction
+	of steepest descent
+	
+	 - errors:
+	
+	 a) parallel flow: 
+	
+	 - correct only when in cardinal direction (0, 90, 180, 270 degrees)
+	
+	 - underestimated by factor of 2 in diagonal direction (45, 135, 225,
+	315 degrees)
+	
+	 - underestimated by factor between 1 and 2 in other cases
+	
+	 b) divergent flow
+	
+	 - radial flow symmetry not conserved (e.g. on a cone mountain)
+	
+	 - overestimation by factor of 2 or underestimation approaching up
+	to 100 percent
+	
+	 c) convergent flow
+	
+	 - radial symmetrie not conserved
+	
+	 - over- and underestimated not as large as for a cone mountain
+	
+	- Rho8
+	
+	 -},
+  doi      = {10.1029/93WR03512},
+  file     = {:Costa-Cabral_Burges_1994_DEMON_model_contributing_dispersal_areas.pdf:PDF},
+  groups   = {DEM, LUMP-Paper, General studies},
+  keywords = {Monitoring networks, Streamflow, Geomorphology: general, Erosion},
+}
+
+@Article{Yang2002,
+  author  = {Yang, Dawen and Herath, Srikantha and Musiake, Katumi},
+  title   = {A hillslope-based hydrological model using catchment area and width functions},
+  journal = {Hydrological Sciences Journal},
+  year    = {2002},
+  volume  = {47},
+  number  = {1},
+  pages   = {49--65},
+  doi     = {10.1080/02626660209492907},
+  eprint  = {http://dx.doi.org/10.1080/02626660209492907},
+  file    = {:Yang_etal_2002_hillslope-based_model_Japan.pdf:PDF},
+  groups  = {Hillslopes},
+  url     = { 
+        http://dx.doi.org/10.1080/02626660209492907
+    
+},
+}
+
+@Article{Yang2000,
+  author    = {Yang, Dawen and Herath, Srikantha and Musiake, Katumi},
+  title     = {Comparison of different distributed hydrological models for characterization of catchment spatial variability},
+  journal   = {Hydrological Processes},
+  year      = {2000},
+  volume    = {14},
+  number    = {3},
+  pages     = {403--416},
+  issn      = {1099-1085},
+  doi       = {10.1002/(SICI)1099-1085(20000228)14:3<403::AID-HYP945>3.0.CO;2-3},
+  file      = {:Yang_etal_2000_comparison_distributed_lumped_models.pdf:PDF},
+  groups    = {General studies},
+  keywords  = {distributed physically-based hydrological model, spatial variability, catchment area function},
+  publisher = {John Wiley \& Sons, Ltd.},
+}
+
+@Article{Uhlenbrook2002,
+  author    = {Uhlenbrook, S. and Leibundgut, Ch.},
+  title     = {Process-oriented catchment modelling and multiple-response validation},
+  journal   = {Hydrological Processes},
+  year      = {2002},
+  volume    = {16},
+  number    = {2},
+  pages     = {423--440},
+  issn      = {1099-1085},
+  doi       = {10.1002/hyp.330},
+  file      = {:Uhlenbrook_Leibundgut_2002_TAC_model_functional_units.pdf:PDF},
+  groups    = {Functional units, TAC},
+  keywords  = {conceptual rainfall runoff modelling, tracer, runoff generation, dissolved silica, TAC model, HBV model, model validation},
+  publisher = {John Wiley \& Sons, Ltd.},
+}
+
+@Manual{Kouwen2016,
+  title   = {WATFLOOD / CHARM Canadian Hydrological And Routing Model},
+  author  = {Nicholas Kouwen},
+  address = {Department of Civil Engineering, University of Waterloo, Waterloo, Ontario, Canada},
+  year    = {2016},
+  file    = {:Kouwen_2016_WATFLOOD_CHARM_manual.pdf:PDF},
+  groups  = {WATFLOOD},
+}
+
+@Article{Hazenberg2015,
+  author   = {Hazenberg, P. and Fang, Y. and Broxton, P. and Gochis, D. and Niu, G.-Y. and Pelletier, J. D. and Troch, P. A. and Zeng, X.},
+  title    = {A hybrid-3D hillslope hydrological model for use in Earth system models},
+  journal  = {Water Resources Research},
+  year     = {2015},
+  volume   = {51},
+  number   = {10},
+  pages    = {8218--8239},
+  issn     = {1944-7973},
+  doi      = {10.1002/2014WR016842},
+  file     = {:Hazenberg_etal_2015_h3D_hillslope_hydrological_model.pdf:PDF},
+  groups   = {Hillslopes, h3D hillslope hydrol model},
+  keywords = {Modeling, Numerical approximations and analysis, Geomorphology: hillslope, Earth system modeling, hillslope hydrology, hybrid-3D model, computational hydrology, unsaturated-saturated zone interaction, Earth System Models},
+}
+
+@InProceedings{Bronstert1994,
+  author    = {Axel Bronstert},
+  title     = {Modellierung der Abflussbildung und der Bodenwasserdynamik von H{\"a}ngen},
+  booktitle = {Mitteilungen des Instituts f{\"u}r Hydrologie und Wasserwirtschaft},
+  year      = {1994},
+  number    = {46},
+  publisher = {Universit{\"a}t Karlsruhe},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
