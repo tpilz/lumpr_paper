@@ -148,7 +148,7 @@ Subgrid parameterisation is a common procedure, describing the variability of a 
 A different approach is to introduce different spatial levels in a model as compromise between distributed and lumped discretisation schemes.
 This is sometimes referred to as \emph{semi-distributed} approach, often being the preferred choice in practical applications \citep[e.g.,][]{Kumar2010, Euser2015}.
 Although no clear definition exists, this family of discretisation typically consists of a hierarchical multi-scale scheme dividing a hydrological basin into several subbasins which in turn contain irregularly shaped computational elements being hydrologically uniform entities \citep[e.g.,][]{Krysanova1998}.
-Thus, the properties of both distributed and lumped modelling can be found, often even implicitly extended by integrating subgrid parameterisation schemes.
+Thus, the properties of both distributed and lumped modelling can be found, often extended by integrating subgrid parameterisation schemes.
 On the one hand, hydrological processes are simulated at different locations in the study area taking into account distributed model input (such as meteorological forcing and landscape parameters) and producing spatially variable output (such as lateral and vertical water flows).
 On the other hand, naturally heterogeneous but hydrologically similar areas are aggregated and parameterised in the same manner.
 The spatial heterogeneity of parameters or state variables of the model, such as hydraulic conductivity and soil moisture, respectively, may thereby be described by constitutive relationships.
@@ -183,7 +183,7 @@ Eventually, the findings of this study are discussed and conclusions are inferre
 As being the starting point of any representation of landscapes in computer models, this section starts with a short overview of basic approaches for the representation of topography in computer models (Sect.\ \ref{sec:review_dems}).
 What follows is a review of methods for the delineation of spatial entities in semi-distributed hydrological modelling (Sect.\ \ref{sec:review_approaches}) and, finally, an appraisal if and how these are supported by existing software tools (Sect.\ \ref{sec:review_software}).
 
-As as basis for watershed delineation and further landscape discretisation, a number of pre-processing steps have to be performed.
+As a basis for watershed delineation and further landscape discretisation, a number of pre-processing steps have to be performed.
 These shall be briefly mentioned but not further discussed herein.
 Typically included is \emph{(i)} pit-filling of the DEM to remove sink areas and ensure a proper drainage of water from the catchment;
 \emph{(ii)} computation of flow directions;
@@ -238,6 +238,7 @@ HSB & Hillslope & h3D & -- & \citet{Troch2003}\\
 Single Hillslope & Hillslope & KINEROS, IHDM, CATFLOW, HILLSLOPE & -- & \citet{Bronstert1999}\\
 Representative Hillslope & Hillslope & WEPP & GeoWEPP, LUMP & \citet{Flanagan1995}\\
 ECS & Hillslope & -- & SMART & \citet{Khan2014}\\
+flow-interval scheme & Hillslope & -- & -- & \citet{Yang2002}\\
 REW & Functional unit & -- & -- & \citet{Reggiani1998}\\
 Functional response units & Functional unit & TAC & -- & \citet{Uhlenbrook2002,Zehe2014}\\
 Multiple scales & Mixed & RHESSys, WASA-SED & LUMP & \citet{Guentner2002}\\
@@ -253,6 +254,7 @@ These include
 approaches taking \emph{Hillslopes} as spatial elements;
 \emph{Functional units} with focus on a homogeneous process description rather than mere spatial entities;
 and a \emph{Mixed} class, typically comprising a hierarchical scheme of different spatial scales.
+With the latter we mean conceptions exceeding the common \emph{watershed > subbasin > element} scheme.
 In the following, the presented approaches shall be briefly described whereas more information on the mentioned software solutions can be found in Sect.\ \ref{sec:review_software}.
 
 \citet{Wood1988} focussed on how to define a hydrological (sub-)catchment and studied its dominant controls.
@@ -281,9 +283,9 @@ They lump individual hillslopes by calculating and averaging quantitative hillsl
 Examples for models treating single hillslopes over smaller scales include KINEROS \citep{Woolhiser1990}, IHDM \citep{Beven1987}, HILLSLOPE \citep{Bronstert1994}, or CATFLOW \citep{Maurer1997}.
 Several studies focussed on how to delineate and describe hillslopes from a DEM \citep[e.g.,][]{Cochrane2003, Noel2014}, discussing morphometric controls on hillslope parameters \citep{Bogaart2006}, or investigating the role of hydrologic connectivity \citep{Smith2013}.
 \citet{Khan2014}, for instance, formulated \emph{Equivalent Cross Sections} (ECSs) as representatives of a part or an entire subbasin and proposed different averaging algorithms based on topographical and physiographical properties.
-\citet{Yang2002} introduced the \emph{flow-interval hillslope scheme} where a catchment is subdivided into a number of connected flow intervals which are defined by the width (i.e., the number of streams) and the geomorphological area (i.e., the flow area) as functions of distance from the watershed outlet.
+\citet{Yang2002} introduced the \emph{flow-interval hillslope scheme} where a catchment is subdivided into a number of connected flow intervals which are defined by the width (i.e., the number of streams) and the geomorphological area (i.e., the drainage area) as functions of distance from the watershed outlet.
 Overall, hillslope hydrological modelling has been proven to be useful in regions with steeply sloping landscapes and heterogeneous runoff generation mechanisms where lateral water fluxes are relevant \citep{Bronstert1999}.
-On the other hand, when iterating through individual hillslopes of a watershed, applicability is clearly limited to small scales due to the large computational demand.
+On the other hand, especially when iterating through individual hillslopes of a watershed, applicability is clearly limited to smaller scales due to the large computational demand.
 
 In a different concept, a stronger focus is put on \emph{functional units} rather than mere spatial units which always came along with the assumption of homogeneous process dynamics in a certain area.
 Herein, each unit is characterised by a specific dominant process and an accompanying model conceptualisation, such as for the TAC model of \citet{Uhlenbrook2002}.
@@ -352,7 +354,7 @@ As a next step, similar catenae are grouped into landscape units whereas for the
 These representative catenae are eventually sub-divided into terrain components, e.g., into upslope, middle, and downslope parts.
 The approach will be further discussed in Sect.\ \ref{sec:landscape_discretisation} and is illustrated in Fig.\ \ref{fig:lumpr_output}.
 LUMP is semi-automated in way that the hillslope-based landscape parameterisation is largely automated generating reproducible results and reducing required user decisions to a minimum whereas, on the other hand, expert knowledge can be easily incorporated to improve the discretisation outcome.
-Contrary to other hillslope-based algorithms, due to the discretisation at multiple scales, it is applicable over large scales with relatively little effort.
+Contrary to other hillslope-based algorithms, due to the discretisation at multiple scales, it is applicable over large areas with relatively little effort.
 Even so LUMP was directed to the pre-processing of the WASA-SED model \citep{Guentner2004b}, it is stand-alone and the output can as well be used for other hillslope-based models.
 However, the programme is basically a collection of freely available scripts written in MATLAB and SHELL using GRASS functionalities.
 Additionally to the dependence on commercial software, the workflow still requires a considerable number of pre-processing steps and user interaction.
@@ -404,6 +406,7 @@ A template script guiding through the processing steps of landscape discretisati
 \label{sec:landscape_discretisation}
 As is sketched in Fig.\ \ref{fig:lumpr_scheme}, the process of landscape discretisation involves five functions that should be applied in the following order.
 This can be ensured by customising the provided template script.
+Figure \ref{fig:lumpr_output} gives an illustrative example for the outcomes of the following steps (i) to (iv).
 \emph{(i) calc\_subbas()} sub-divides the hydrological basin into subbasins using a given grid-based DEM (black outlined polygons S1--3 in Fig.\ \ref{fig:lumpr_output}).
 Subbasin size can be influenced by the user by either giving a set of coordinates of drainage locations inferred beforehand or by specifying the parameter \verb|thresh_sub| being the minimum size of a subbasin in number of grid cells internally used by GRASS function r.watershed.
 Furthermore, the river network is inferred from calculated flow accumulation (the number of upstream raster cells draining through a specific raster cell) via a user-defined threshold (blue lines in Fig.\ \ref{fig:lumpr_output}).
@@ -424,7 +427,6 @@ The number of TCs to be generated for each LU can be specified and the partition
 Topological relations between SVCs, TCs, and LUs are established, expressed as percentages of covered area and along-slope location of TCs within a LU rather than spatial coordinates.
 For visual inspection, the user has the option to let the functions generate plots during steps (iii) and (iv).
 The employed algorithms for steps (iii) and (iv) are explained in more detail by \citet{Francke2008}.
-Figure \ref{fig:lumpr_output} gives an illustrative example for the outcome after applying steps (i) to (iv).
 
 Finally, \emph{(v) lump\_grass\_post()} establishes the topology between subbasins and LUs, again expressed as percentage of covered area.
 Subbasins are the only spatial units with explicit reference in terms of geographic coordinates.
