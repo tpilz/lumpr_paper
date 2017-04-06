@@ -1,7 +1,7 @@
 %% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL script.tex       Fri Feb  3 06:36:36 2017
-%DIF ADD script_rev.tex   Wed Apr  5 11:50:42 2017
+%DIF ADD script_rev.tex   Wed Apr  5 16:33:42 2017
 %% ---------------------------------
 %% This template should be used for copernicus.cls
 %% The class file and some style files are bundled in the Copernicus Latex Package, which can be downloaded from the different journal webpages.
@@ -717,6 +717,8 @@ These comprise varying complexities within all spatial levels and different degr
 Finally, WASA-SED was run with each realisation over a 13 year period, where the first five years were considered as warm-up and thus have been excluded from the analysis.
 
 \subsubsection{Scalar model output}
+\DIFaddbegin \label{sec:scalar_targetvar}
+\DIFaddend 
 
 \begin{table*}[t]
 \caption{Streamflow indices used as scalar response functions for sensitivity analysis.}
@@ -793,7 +795,9 @@ with $n$ and $m$ being the number of samples to estimate $F_{y_i}(y_i)$ and $F_{
 \label{fig:resvol}
 \end{figure*}
 
-Figure \ref{fig:resvol} provides and overview over the daily model results in comparison to observations for the Bengu\^e reservoir at the catchment outlet together with the catchment's areal precipitation used to drive the model.
+\DIFdelbegin \DIFdel{Figure \ref{fig:resvol} provides and }\DIFdelend \DIFaddbegin \DIFadd{Instead of the inflows (i.e., the model output used to calculate the streamflow indices, see Sect.\ \ref{sec:scalar_targetvar}), Fig.\ \ref{fig:resvol} provides an }\DIFaddend overview over the \DIFdelbegin \DIFdel{daily model results }\DIFdelend \DIFaddbegin \DIFadd{simulated reservoir storages }\DIFaddend in comparison to observations for the Bengu\^e reservoir at the catchment outlet\DIFdelbegin \DIFdel{together with the }\DIFdelend \DIFaddbegin \DIFadd{.
+We chose the latter for reasons of a better representation of values as the inflow data contain a large number of zero flow events and are, thus, much less informative than the reservoir volume.
+Figure \ref{fig:resvol} furthermore shows the }\DIFaddend catchment's areal precipitation used to drive the model.
 The absolute deviations of these uncalibrated model runs from the observations are, in parts, considerable, whereas qualitative behaviour is matched well.
 However, in some years (2008 and 2011) the model simulates reservoir filling within the rainy season much earlier than observed.
 Simulated reservoir depletion is often slower than it can be observed which might be the result from an imperfect parameterisation of reservoir abstractions for water consumption.
@@ -915,7 +919,16 @@ Their reported runoff coefficients are mostly lower than ours, even when precipi
 The precipitation forcing for the current study was implicitly slightly influenced by variable subbasin sizes and numbers, as the precipitation was specified at the subbasin level.
 The variability in precipitation input among the realisations, however, appears to be negligible as it is generally less than 6 \unit{mm} for daily values and less than 10 \unit{mm} for yearly sums (see Fig.\DIFaddbegin \DIFadd{\ }\DIFaddend \ref{fig:prec_diff} in Appendix).
 
-Regarding the method of sensitivity analysis it can be concluded that the choice for a density-based approach was reasonable as most of the analysed streamflow indices exhibit multi-modal or skewed value distributions.
+\DIFdelbegin \DIFdel{Regarding the }\DIFdelend \DIFaddbegin \DIFadd{Our simulation results show a general overestimation in comparison to measured values (Fig.\ \ref{fig:resvol}).
+Despite the mentioned uncertainties arising from the precipitation input, there are some other possible factors that could have led to the observed mismatch:
+uncertainties in the reservoir parameterisation in the model (e.g., we use a static parameterisation of reservoir abstractions which are, in reality, dynamic);
+uncertainties in the observations (e.g., due to deficiencies or changes of the rating curve);
+model parameterisation uncertainty (the model has been run with standard parameterisation for the area without further calibration, see Sect.\ \ref{sec:data}).
+Regarding the parameterisation it should furthermore be noted that the different discretisations did not directly affect soil nor land-cover parameters.
+They merely modified the fractions of soil and vegetation types that are assigned to the spatial units.
+}
+
+\DIFadd{Considering the }\DIFaddend method of sensitivity analysis it can be concluded that the choice for a density-based approach was reasonable as most of the analysed streamflow indices exhibit multi-modal or skewed value distributions.
 A drawback of the analysis approach is that only first order effects of parameter sensitivities have been quantified while interactions among parameters have been neglected.
 It might thus be that insignificant parameters (i.e., the parameter \verb!LU_atts!) have significant higher order effects due to parameter correlations.
 With respect to the discretisation parameterisations, it can be argued that the chosen parameter realisations are both subjective and case study specific.
@@ -924,7 +937,8 @@ This suggest a continuous response of the parameters, facilitating some transfer
 
 Overall, the example study and sensitivity analysis is catchment and model specific.
 Strictly speaking, conclusions are thus limited to applications of the same model under similar hydro-climatic conditions, i.e., semi-arid areas without substantial groundwater influences mainly characterised by spatially and temporally heterogeneous precipitation patterns.
-Nevertheless, the results suggest the large influence of the subbasin size for the chosen model, which needs to be considered in similar applications.
+\DIFdelbegin \DIFdel{Nevertheless, the results suggest the large influence of the subbasin size for the chosen model , which needs to be considered in similar applications}\DIFdelend \DIFaddbegin \DIFadd{It remains an open question whether the use of a different model and/or the application in a catchment with distinct environmental and climatological characteristics and/or different dominant runoff generation mechanisms would lead to other conclusions.
+This paper presents a novel framework along with an example application to address these questions in future studies}\DIFaddend .
 
 
 
@@ -954,7 +968,8 @@ The size of subbasins and delineated hillslopes were found to be the most influe
 The number of landscape units (i.e., lumped hillslopes) and the further subdivision into terrain components appeared to be less important, the amount of information included in the hillslope lumping process being even completely insignificant.
 
 The R package turned out to be an efficient and user-friendly tool for the automation of landscape discretisation for hillslope-based large-scale hydrological models.
-Future work will focus on comparing uncertainties arising from discretization to other sources of uncertainties.
+Future work\DIFaddbegin \DIFadd{, on the one hand, }\DIFaddend will focus on comparing uncertainties arising from \DIFdelbegin \DIFdel{discretization }\DIFdelend \DIFaddbegin \DIFadd{discretisation }\DIFaddend to other sources of uncertainties\DIFaddbegin \DIFadd{.
+On the other hand, in order to obtain more general conclusions, the presented sensitivity analysis of landscape discretisation parameters needs to be extended to other catchments within different environmental and hydro-meteorological conditions as well as other hillslope-based models}\DIFaddend .
 Technical extensions will include the integration of further models, improvement of time consumption and memory handling for application in large areas > 100,000 \unit{km^2}, consideration of artificial discontinuities and mechanisms for large flat areas, refinement of certain parameter estimation approaches, and testing the package for other hydro-meteorological and environmental conditions.
 
 
