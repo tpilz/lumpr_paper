@@ -67,13 +67,6 @@
 \usepackage{rotating}
 
 
-%%% OWN MODIFICATIONS
-% tabularx: vertical alignment (p - top, m - center, b - bottom) in multi-column tabularx cells
-\def\tabularxcolumn#1{p{#1}} 
-\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
-\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
-\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}%
-%%%
 
 
 %%% BEGIN OF DOCUMENT
@@ -231,7 +224,8 @@ In correspondence to the dominating hydrological processes, the objects of highe
 
 \begin{table*}[t]
 \caption{Classification of prominent landscape discretisation approaches for semi-distributed hydrological modelling. Approaches are ordered as they appear in the text. For the meaning of abbreviations of the approaches see text. Listed model and software solutions are non-exhaustive examples. Key references refer to the introductory or an illustrative example publication.}
-\begin{tabularx}{\textwidth}{L{.2}L{.16}L{.22}L{.2}L{.22}}
+%\begin{tabularx}{\textwidth}{L{.2}L{.16}L{.22}L{.2}L{.22}}
+\begin{tabularx}{\textwidth}{llXXX}
 \tophline
 Approach & Class & Model & Software solution & Key reference\\
 \middlehline
@@ -561,7 +555,7 @@ Henceforward, we consider these as parameters within a model sensitivity analysi
 
 \begin{table}[t]
 \caption{User decisions affecting landscape discretisation complexity and their realisations used for sensitivity analysis.}
-\begin{tabularx}{\columnwidth}{L{.25}L{.45}C{.3}}
+\begin{tabularx}{\columnwidth}{lXc}
 \tophline
 Identifier & Meaning & Realisations\\
 \middlehline
@@ -612,7 +606,7 @@ Finally, WASA-SED was run with each realisation over a 13 year period, where the
 
 \begin{table*}[t]
 \caption{Streamflow indices used as scalar response functions for sensitivity analysis.}
-\begin{tabularx}{\textwidth}{L{.1}L{.25}L{.5}L{.15}}
+\begin{tabularx}{\textwidth}{llXl}
 \tophline
 Symbol & Index & Calculation & Unit\\
 \middlehline

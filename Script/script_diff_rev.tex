@@ -1,7 +1,7 @@
 %% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL script.tex       Fri Feb  3 06:36:36 2017
-%DIF ADD script_rev.tex   Wed Apr  5 16:33:42 2017
+%DIF ADD script_rev.tex   Thu Apr  6 08:55:14 2017
 %% ---------------------------------
 %% This template should be used for copernicus.cls
 %% The class file and some style files are bundled in the Copernicus Latex Package, which can be downloaded from the different journal webpages.
@@ -70,20 +70,16 @@
 \usepackage{rotating}
 
 
-%DIF 70c70
 %DIF < % OWN MODIFICATIONS
 %DIF -------
-%%% OWN MODIFICATIONS %DIF > 
-%DIF -------
-% tabularx: vertical alignment (p - top, m - center, b - bottom) in multi-column tabularx cells
-\def\tabularxcolumn#1{p{#1}} 
-\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
-\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
-\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}%
-%%% %DIF > 
  %DIF > 
+%DIF < % tabularx: vertical alignment (p - top, m - center, b - bottom) in multi-column tabularx cells
  %DIF > 
+%DIF < \def\tabularxcolumn#1{p{#1}} 
 %%% BEGIN OF DOCUMENT %DIF > 
+%DIF < \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
+%DIF < \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
+%DIF < \newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}%
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
 %DIF UNDERLINE PREAMBLE %DIF PREAMBLE
 \RequirePackage[normalem]{ulem} %DIF PREAMBLE
@@ -279,7 +275,8 @@ In correspondence to the dominating hydrological processes, the objects of highe
 
 \DIFaddbegin \begin{table*}[t]
 \caption{\DIFaddFL{Classification of prominent landscape discretisation approaches for semi-distributed hydrological modelling. Approaches are ordered as they appear in the text. For the meaning of abbreviations of the approaches see text. Listed model and software solutions are non-exhaustive examples. Key references refer to the introductory or an illustrative example publication.}}
-\begin{tabularx}{\textwidth}{L{.2}L{.16}L{.22}L{.2}L{.22}}
+%DIF > \begin{tabularx}{\textwidth}{L{.2}L{.16}L{.22}L{.2}L{.22}}
+\begin{tabularx}{\textwidth}{llXXX}
 \tophline
 \DIFaddFL{Approach }& \DIFaddFL{Class }& \DIFaddFL{Model }& \DIFaddFL{Software solution }& \DIFaddFL{Key reference}\\
 \middlehline
@@ -670,8 +667,10 @@ Henceforward, we consider these as parameters within a model sensitivity analysi
 
 \begin{table}[t]
 \caption{User decisions affecting landscape discretisation complexity and their realisations used for sensitivity analysis.}
-\begin{tabularx}{\columnwidth}{L{.25}L{.45}C{.3}}
-\tophline
+\DIFdelbeginFL %DIFDELCMD < \begin{tabularx}{\columnwidth}{L{.25}L{.45}C{.3}}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \begin{tabularx}{\columnwidth}{lXc}
+\DIFaddendFL \tophline
 Identifier & Meaning & Realisations\\
 \middlehline
 SUB\_thresh & Minimum size of subbasins in number of grid cells & 1000, 2000, 5000, 10000, 30000\\
@@ -722,8 +721,10 @@ Finally, WASA-SED was run with each realisation over a 13 year period, where the
 
 \begin{table*}[t]
 \caption{Streamflow indices used as scalar response functions for sensitivity analysis.}
-\begin{tabularx}{\textwidth}{L{.1}L{.25}L{.5}L{.15}}
-\tophline
+\DIFdelbeginFL %DIFDELCMD < \begin{tabularx}{\textwidth}{L{.1}L{.25}L{.5}L{.15}}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \begin{tabularx}{\textwidth}{llXl}
+\DIFaddendFL \tophline
 Symbol & Index & Calculation & Unit\\
 \middlehline
 $RR$ & Runoff ratio & Sum of daily streamflow values divided by sum of daily precipitation over the whole period of analysis multiplied by 100 & \unit{\%}\\
