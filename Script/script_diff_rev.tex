@@ -1,7 +1,7 @@
 %% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL script.tex       Fri Feb  3 06:36:36 2017
-%DIF ADD script_rev.tex   Thu Apr  6 10:05:52 2017
+%DIF ADD script_rev.tex   Mon Apr 10 09:49:39 2017
 %% ---------------------------------
 %% This template should be used for copernicus.cls
 %% The class file and some style files are bundled in the Copernicus Latex Package, which can be downloaded from the different journal webpages.
@@ -448,7 +448,7 @@ These representative catenae are eventually sub-divided into terrain components,
 The \DIFdelbegin \DIFdel{software is }\DIFdelend \DIFaddbegin \DIFadd{approach will be further discussed in Sect.\ \ref{sec:landscape_discretisation} and is illustrated in Fig.\ \ref{fig:lumpr_output}.
 LUMP is }\DIFaddend semi-automated in way that the hillslope-based landscape parameterisation is largely automated generating reproducible results and reducing required user decisions to a minimum whereas, on the other hand, expert knowledge can be easily incorporated to improve the discretisation outcome.
 \DIFdelbegin \DIFdel{Their software is }\DIFdelend \DIFaddbegin \DIFadd{Contrary to other hillslope-based algorithms, due to the discretisation at multiple scales, it is applicable over large areas with relatively little effort.
-Even so LUMP was directed to the pre-processing of the WASA-SED model \mbox{%DIFAUXCMD
+Even though LUMP was directed to the pre-processing of the WASA-SED model \mbox{%DIFAUXCMD
 \citep{Guentner2004b}}%DIFAUXCMD
 , it is stand-alone and the output can as well be used for other hillslope-based models.
 However, the programme is }\DIFaddend basically a collection of freely available scripts written in MATLAB and SHELL using GRASS functionalities.
@@ -544,7 +544,7 @@ The employed algorithms for steps (iii) and (iv) are explained in more detail by
 
 Finally, \emph{(v) lump\_grass\_post()} \DIFdelbegin \DIFdel{derives }\DIFdelend \DIFaddbegin \DIFadd{establishes the topology between subbasins and LUs, again expressed as percentage of covered area.
 Subbasins are the only spatial units with explicit reference in terms of geographic coordinates.
-In addition, }\DIFaddend subbasin and LU specific parameters \DIFdelbegin \DIFdel{thereby employing }\DIFdelend \DIFaddbegin \DIFadd{such as representative channel geometry and routing parameters, groundwater, and landscape coefficients, are assessed.
+In addition, }\DIFaddend subbasin and LU specific parameters \DIFdelbegin \DIFdel{thereby employing }\DIFdelend \DIFaddbegin \DIFadd{such as representative channel geometry and routing parameters, groundwater, and landscape coefficients, are approximated.
 Hereby, }\DIFaddend rather simple relationships or typical standard values \DIFdelbegin \DIFdel{.
 Thus, the }\DIFdelend \DIFaddbegin \DIFadd{are employed.
 The }\DIFaddend output of this function is mainly designed to provide a complete plausible parameterisation.
@@ -802,8 +802,8 @@ with $n$ and $m$ being the number of samples to estimate $F_{y_i}(y_i)$ and $F_{
 \label{fig:resvol}
 \end{figure*}
 
-\DIFdelbegin \DIFdel{Figure \ref{fig:resvol} provides and }\DIFdelend \DIFaddbegin \DIFadd{Instead of the inflows (i.e., the model output used to calculate the streamflow indices, see Sect.\ \ref{sec:scalar_targetvar}), Fig.\ \ref{fig:resvol} provides an }\DIFaddend overview over the \DIFdelbegin \DIFdel{daily model results }\DIFdelend \DIFaddbegin \DIFadd{simulated reservoir storages }\DIFaddend in comparison to observations for the Bengu\^e reservoir at the catchment outlet\DIFdelbegin \DIFdel{together with the }\DIFdelend \DIFaddbegin \DIFadd{.
-We chose the latter for reasons of a better representation of values as the inflow data contain a large number of zero flow events and are, thus, much less informative than the reservoir volume.
+\DIFdelbegin \DIFdel{Figure \ref{fig:resvol} provides and }\DIFdelend \DIFaddbegin \DIFadd{Instead of the simulated river discharge (i.e., the model output used to calculate the streamflow indices, see Sect.\ \ref{sec:scalar_targetvar}), Fig.\ \ref{fig:resvol} provides an }\DIFaddend overview over the \DIFdelbegin \DIFdel{daily model results }\DIFdelend \DIFaddbegin \DIFadd{simulated reservoir storages }\DIFaddend in comparison to observations for the Bengu\^e reservoir at the catchment outlet\DIFdelbegin \DIFdel{together with the }\DIFdelend \DIFaddbegin \DIFadd{.
+We chose the latter because of the very episodic characteristic of the river discharge while the volumes, for visual comparison, constitute a more informative representation and are more directly related to available measurements.
 Figure \ref{fig:resvol} furthermore shows the }\DIFaddend catchment's areal precipitation used to drive the model.
 The absolute deviations of these uncalibrated model runs from the observations are, in parts, considerable, whereas qualitative behaviour is matched well.
 However, in some years (2008 and 2011) the model simulates reservoir filling within the rainy season much earlier than observed.
@@ -975,9 +975,9 @@ The size of subbasins and delineated hillslopes were found to be the most influe
 The number of landscape units (i.e., lumped hillslopes) and the further subdivision into terrain components appeared to be less important, the amount of information included in the hillslope lumping process being even completely insignificant.
 
 The R package turned out to be an efficient and user-friendly tool for the automation of landscape discretisation for hillslope-based large-scale hydrological models.
-Future work\DIFaddbegin \DIFadd{, on the one hand, }\DIFaddend will focus on comparing uncertainties arising from \DIFdelbegin \DIFdel{discretization }\DIFdelend \DIFaddbegin \DIFadd{discretisation }\DIFaddend to other sources of uncertainties\DIFaddbegin \DIFadd{.
-On the other hand, in order to obtain more general conclusions, the presented sensitivity analysis of landscape discretisation parameters needs to be extended to other catchments within different environmental and hydro-meteorological conditions as well as other hillslope-based models}\DIFaddend .
-Technical extensions will include the integration of further models, improvement of time consumption and memory handling for application in large areas > 100,000 \unit{km^2}, consideration of artificial discontinuities and mechanisms for large flat areas, refinement of certain parameter estimation approaches, and testing the package for other hydro-meteorological and environmental conditions.
+Future work\DIFaddbegin \DIFadd{, on the one hand, }\DIFaddend will focus on comparing uncertainties arising from \DIFdelbegin \DIFdel{discretization }\DIFdelend \DIFaddbegin \DIFadd{discretisation }\DIFaddend to other sources of uncertainties.
+\DIFaddbegin \DIFadd{On the other hand, in order to obtain more general conclusions, the presented sensitivity analysis of landscape discretisation parameters needs to be extended to other catchments within different environmental and hydro-meteorological conditions as well as other hillslope-based models.
+}\DIFaddend Technical extensions will include the integration of further models, improvement of time consumption and memory handling for application in large areas > 100,000 \unit{km^2}, consideration of artificial discontinuities and mechanisms for large flat areas, refinement of certain parameter estimation approaches, and testing the package for other hydro-meteorological and environmental conditions.
 
 
 
@@ -1027,7 +1027,7 @@ Land cover and soil raster maps are not publicly available.
 
 \begin{acknowledgements}
 Authors thank Fernanda Scholz (former M.Sc. student at the Leibniz University of Hannover) for the preparation of soil data.
-M. Sc. student Lisa Bergh\"auser from the University of Potsdam is acknowledged for testing lumpR within her Thesis and giving valuable feedback and bug reports.
+\DIFdelbegin \DIFdel{M. Sc. student }\DIFdelend \DIFaddbegin \DIFadd{Student }\DIFaddend Lisa Bergh\"auser from the University of Potsdam is acknowledged for testing lumpR \DIFdelbegin \DIFdel{within her Thesis }\DIFdelend and giving valuable feedback and bug reports.
 Furthermore, we appreciate the feedback and suggestions on sensitivity analysis by Dr. Gabriele Baroni.
 Tobias Pilz acknowledges funding by the Helmholtz graduate school GeoSim.
 \end{acknowledgements}

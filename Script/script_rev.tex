@@ -355,7 +355,7 @@ These representative catenae are eventually sub-divided into terrain components,
 The approach will be further discussed in Sect.\ \ref{sec:landscape_discretisation} and is illustrated in Fig.\ \ref{fig:lumpr_output}.
 LUMP is semi-automated in way that the hillslope-based landscape parameterisation is largely automated generating reproducible results and reducing required user decisions to a minimum whereas, on the other hand, expert knowledge can be easily incorporated to improve the discretisation outcome.
 Contrary to other hillslope-based algorithms, due to the discretisation at multiple scales, it is applicable over large areas with relatively little effort.
-Even so LUMP was directed to the pre-processing of the WASA-SED model \citep{Guentner2004b}, it is stand-alone and the output can as well be used for other hillslope-based models.
+Even though LUMP was directed to the pre-processing of the WASA-SED model \citep{Guentner2004b}, it is stand-alone and the output can as well be used for other hillslope-based models.
 However, the programme is basically a collection of freely available scripts written in MATLAB and SHELL using GRASS functionalities.
 Additionally to the dependence on commercial software, the workflow still requires a considerable number of pre-processing steps and user interaction.
 
@@ -430,7 +430,7 @@ The employed algorithms for steps (iii) and (iv) are explained in more detail by
 
 Finally, \emph{(v) lump\_grass\_post()} establishes the topology between subbasins and LUs, again expressed as percentage of covered area.
 Subbasins are the only spatial units with explicit reference in terms of geographic coordinates.
-In addition, subbasin and LU specific parameters such as representative channel geometry and routing parameters, groundwater, and landscape coefficients, are assessed.
+In addition, subbasin and LU specific parameters such as representative channel geometry and routing parameters, groundwater, and landscape coefficients, are approximated.
 Hereby, rather simple relationships or typical standard values are employed.
 The output of this function is mainly designed to provide a complete plausible parameterisation.
 Where alternative information are available, they should be used.
@@ -681,8 +681,8 @@ with $n$ and $m$ being the number of samples to estimate $F_{y_i}(y_i)$ and $F_{
 \label{fig:resvol}
 \end{figure*}
 
-Instead of the inflows (i.e., the model output used to calculate the streamflow indices, see Sect.\ \ref{sec:scalar_targetvar}), Fig.\ \ref{fig:resvol} provides an overview over the simulated reservoir storages in comparison to observations for the Bengu\^e reservoir at the catchment outlet.
-We chose the latter for reasons of a better representation of values as the inflow data contain a large number of zero flow events and are, thus, much less informative than the reservoir volume.
+Instead of the simulated river discharge (i.e., the model output used to calculate the streamflow indices, see Sect.\ \ref{sec:scalar_targetvar}), Fig.\ \ref{fig:resvol} provides an overview over the simulated reservoir storages in comparison to observations for the Bengu\^e reservoir at the catchment outlet.
+We chose the latter because of the very episodic characteristic of the river discharge while the volumes, for visual comparison, constitute a more informative representation and are more directly related to available measurements.
 Figure \ref{fig:resvol} furthermore shows the catchment's areal precipitation used to drive the model.
 The absolute deviations of these uncalibrated model runs from the observations are, in parts, considerable, whereas qualitative behaviour is matched well.
 However, in some years (2008 and 2011) the model simulates reservoir filling within the rainy season much earlier than observed.
@@ -905,7 +905,7 @@ Land cover and soil raster maps are not publicly available.
 
 \begin{acknowledgements}
 Authors thank Fernanda Scholz (former M.Sc. student at the Leibniz University of Hannover) for the preparation of soil data.
-M. Sc. student Lisa Bergh\"auser from the University of Potsdam is acknowledged for testing lumpR within her Thesis and giving valuable feedback and bug reports.
+Student Lisa Bergh\"auser from the University of Potsdam is acknowledged for testing lumpR and giving valuable feedback and bug reports.
 Furthermore, we appreciate the feedback and suggestions on sensitivity analysis by Dr. Gabriele Baroni.
 Tobias Pilz acknowledges funding by the Helmholtz graduate school GeoSim.
 \end{acknowledgements}
